@@ -28,8 +28,14 @@ def open_config():
                 config["Theme"] = line.strip() or "black"
                 
                 line = f.readline()
-                path = Path(line) / "Spaceflight Simulator.exe"
-                config["GamePath"] = line.strip() if line else ""
+                if line:
+                    path = Path(line) / "Spaceflight Simulator.exe"
+
+                    if path.is_file():
+                        config["GamePath"] = line.strip()
+                else:
+                    config["GamePath"] = ""
+                    
                 print(f"主题:{config['Theme']}\n游戏路径:{config['GamePath'] or '未选择'}")
     except FileNotFoundError:
          print("警告:未找到配置文件!")
