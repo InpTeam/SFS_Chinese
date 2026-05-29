@@ -20,4 +20,4 @@ legacy/         旧版本参考
 欢迎提交 Issue 和 Pull Request 帮助改进翻译 修复 Bug 或优化性能
 
 项目地址 https://github.com/Dere3046/SFS_Chinese
-翻译仓库 https://github.com/Dere3046/Spaceflight-Simulator-CNlang
+翻译仓库 https://github.com/sTheNight/Spaceflight-Simulator-CNlang
