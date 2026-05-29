@@ -195,4 +195,26 @@ namespace SFS_HAN_MOD
             SFS_HAN_MOD.ApplyFontToTMP(__instance);
         }
     }
+
+    [HarmonyPatch(typeof(SFS.World.LocationDrawer), "Update")]
+    public class LocationDrawer_Update_Patch
+    {
+        [HarmonyPrefix]
+        static void Prefix()
+        {
+            FixColon(SFS.Translations.Loc.main?.Velocity_Horizontal);
+            FixColon(SFS.Translations.Loc.main?.Velocity_Vertical);
+            FixColon(SFS.Translations.Loc.main?.Height_Horizontal);
+            FixColon(SFS.Translations.Loc.main?.Height_Vertical);
+            FixColon(SFS.Translations.Loc.main?.Height_Terrain_Horizontal);
+            FixColon(SFS.Translations.Loc.main?.Height_Terrain_Vertical);
+        }
+
+        static void FixColon(SFS.Translations.Field f)
+        {
+            if (f?.subs == null) return;
+            if (f.subs.TryGetValue(0, out var v) && v.Contains("："))
+                f.subs[0] = v.Replace('：', ':');
+        }
+    }
 }
